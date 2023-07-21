@@ -1,38 +1,65 @@
 function getComputerChoice(){
     let number = Math.floor(Math.random() * 3);
+    let computerSelection;
     if(number === 1){
-        return "rock";
+        computerSelection = "rock";
     }
     else if(number === 2){
-        return "paper";
+        computerSelection = "paper";
     }
     else{
-        return "scissors";
+        computerSelection = "scissors";
     }
+    return computerSelection
 }
 
 function result(playerSelection, computerSelection){
+    let gameResult;
     if(playerSelection === "rock" && computerSelection === "paper"){
-        return "computer wins";
+        gameResult = "computer wins";
     }
     else if(playerSelection === "paper" && computerSelection === "scissors"){
-        return "computer wins";    
+        gameResult = "computer wins";
     }
     else if(playerSelection === "scissors" && computerSelection === "rock"){
-        return "computer wins";
+        gameResult = "computer wins";
+    }
+    else if(playerSelection === "rock" && computerSelection === "rock"){
+        gameResult = "It's a tie";
+    }
+    else if(playerSelection === "paper" && computerSelection === "paper"){
+        gameResult = "It's a tie";
+    }
+    else if(playerSelection === "scissors" && computerSelection === "scissors"){
+        gameResult = "It's a tie";
     }
     else{
-        return "player wins";
+        gameResult = "player wins";
     }
+    return gameResult;
 }
 
 
-function game(){
-    for(let i=0; i<2; i++){
-        const playerSelection = prompt("Enter choice [rock/paper/scissors]: ").toLowerCase();
-        const computerSelection = getComputerChoice();
-        console.log(result(playerSelection,computerSelection));
-    }
-}
+const computerSelection = getComputerChoice();
+const rock = document.querySelector("#rockBtn");
+const paper = document.querySelector("#paperBtn");
+const scissors = document.querySelector("#scissorsBtn");
+const resultDiv = document.querySelector(".result");
+const div = document.createElement("div");
 
-game();
+rock.addEventListener("click", ()=>{
+    const element = result("rock",computerSelection);
+    div.textContent = element;
+});
+
+paper.addEventListener("click", ()=>{
+    const element = result("paper",computerSelection);
+    div.textContent = element;
+});
+
+scissors.addEventListener("click", ()=>{
+    const element = result("scissors",computerSelection);
+    div.textContent = element;
+});
+
+resultDiv.appendChild(div);
