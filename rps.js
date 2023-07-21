@@ -63,3 +63,7 @@ scissors.addEventListener("click", ()=>{
 });
 
 resultDiv.appendChild(div);
+
+
+
+
