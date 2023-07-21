@@ -24,13 +24,7 @@ function result(playerSelection, computerSelection){
     else if(playerSelection === "scissors" && computerSelection === "rock"){
         gameResult = "computer wins";
     }
-    else if(playerSelection === "rock" && computerSelection === "rock"){
-        gameResult = "It's a tie";
-    }
-    else if(playerSelection === "paper" && computerSelection === "paper"){
-        gameResult = "It's a tie";
-    }
-    else if(playerSelection === "scissors" && computerSelection === "scissors"){
+    else if(playerSelection === computerSelection){
         gameResult = "It's a tie";
     }
     else{
@@ -39,30 +33,35 @@ function result(playerSelection, computerSelection){
     return gameResult;
 }
 
-
-const computerSelection = getComputerChoice();
 const rock = document.querySelector("#rockBtn");
 const paper = document.querySelector("#paperBtn");
 const scissors = document.querySelector("#scissorsBtn");
 const resultDiv = document.querySelector(".result");
-const div = document.createElement("div");
 
-rock.addEventListener("click", ()=>{
-    const element = result("rock",computerSelection);
-    div.textContent = element;
-});
+// while(true){
+    const computerSelection = getComputerChoice();
+    const div = document.createElement("div");
+    
+    rock.addEventListener("click", ()=>{
+        const element = result("rock",computerSelection);
+        div.textContent = element;
+    });
+    
+    paper.addEventListener("click", ()=>{
+        const element = result("paper",computerSelection);
+        div.textContent = element;
+    });
+    
+    scissors.addEventListener("click", ()=>{
+        const element = result("scissors",computerSelection);
+        div.textContent = element;
+    });
+    resultDiv.appendChild(div);
+// }
 
-paper.addEventListener("click", ()=>{
-    const element = result("paper",computerSelection);
-    div.textContent = element;
-});
 
-scissors.addEventListener("click", ()=>{
-    const element = result("scissors",computerSelection);
-    div.textContent = element;
-});
 
-resultDiv.appendChild(div);
+
 
 
 
